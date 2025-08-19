@@ -1,6 +1,6 @@
 {
-  "name": "BlueNox Planner",
-  "short_name": "Planner",
+  "name": "NoxBox Planner",
+  "short_name": "NoxBox",
   "description": "Offline-first personal planner with tasks, calendar, and habits.",
   "start_url": "./index.html",
   "scope": "./",

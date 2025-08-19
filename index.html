@@ -3,123 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BlueNox Planner</title>
+  <title>NoxBox Planner</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0B1426"/>
   <link rel="icon" href="icons/icon-192.png">
+  <!-- Fonts: Special Elite (headings), VT323 (ui/labels), Outfit (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script defer src="app.js"></script>
 </head>
 <body>
 <header class="app-header">
-  <h1>BlueNox Planner</h1>
-  <button id="themeToggle" aria-label="Toggle theme">🌓</button>
+  <h1 class="brand">NoxBox Planner</h1>
+  <button id="themeToggle" aria-label="Toggle theme" class="ui">🌓</button>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Primary">
-  <button class="tab active" data-tab="today" role="tab" aria-selected="true">Today</button>
-  <button class="tab" data-tab="tasks" role="tab" aria-selected="false">Tasks</button>
-  <button class="tab" data-tab="calendar" role="tab" aria-selected="false">Calendar</button>
-  <button class="tab" data-tab="habits" role="tab" aria-selected="false">Habits</button>
-  <button class="tab" data-tab="settings" role="tab" aria-selected="false">Settings</button>
+  <button class="tab tab-active ui" data-tab="today" role="tab" aria-selected="true">Today</button>
+  <button class="tab ui" data-tab="tasks" role="tab" aria-selected="false">Tasks</button>
+  <button class="tab ui" data-tab="calendar" role="tab" aria-selected="false">Calendar</button>
+  <button class="tab ui" data-tab="habits" role="tab" aria-selected="false">Habits</button>
+  <button class="tab ui" data-tab="settings" role="tab" aria-selected="false">Settings</button>
 </nav>
 
 <main>
-  <!-- Today -->
   <section id="today" class="panel active" role="tabpanel">
     <div class="card">
-      <h2>Quick Add</h2>
+      <h2 class="h">Quick Add</h2>
       <div class="row">
-        <input id="quickTitle" type="text" placeholder="New task…" />
-        <input id="quickDate" type="date" />
-        <button id="quickAdd">Add</button>
+        <input id="quickTitle" class="body" type="text" placeholder="New task…" />
+        <input id="quickDate" class="body" type="date" />
+        <button id="quickAdd" class="ui">Add</button>
       </div>
-      <label class="row small"><input id="showDone" type="checkbox"> Show done</label>
+      <label class="row small ui"><input id="showDone" type="checkbox"> Show done</label>
     </div>
     <div class="card">
-      <h2>Today & Overdue</h2>
+      <h2 class="h">Today & Overdue</h2>
       <ul id="todayList" class="list"></ul>
-      <p id="emptyToday" class="muted">No tasks due today.</p>
+      <p id="emptyToday" class="muted body">No tasks due today.</p>
     </div>
   </section>
 
-  <!-- Tasks -->
   <section id="tasks" class="panel" role="tabpanel">
     <div class="card">
       <div class="row">
-        <input id="search" type="search" placeholder="Search tasks…" />
+        <input id="search" class="body" type="search" placeholder="Search tasks…" />
       </div>
       <div class="chips">
-        <button class="chip chip-active" data-filter="all">All</button>
-        <button class="chip" data-filter="today">Today</button>
-        <button class="chip" data-filter="overdue">Overdue</button>
-        <button class="chip" data-filter="done">Done</button>
+        <button class="chip chip-active ui" data-filter="all">All</button>
+        <button class="chip ui" data-filter="today">Today</button>
+        <button class="chip ui" data-filter="overdue">Overdue</button>
+        <button class="chip ui" data-filter="done">Done</button>
       </div>
     </div>
     <div class="card">
       <ul id="taskList" class="list"></ul>
-      <p id="emptyTasks" class="muted">No tasks yet—add some on the Today tab.</p>
+      <p id="emptyTasks" class="muted body">No tasks yet—add some on the Today tab.</p>
     </div>
   </section>
 
-  <!-- Calendar -->
   <section id="calendar" class="panel" role="tabpanel">
     <div class="card">
       <div class="row space">
-        <button id="prevMonth" aria-label="Previous month">‹</button>
-        <h2 id="monthLabel"></h2>
-        <button id="nextMonth" aria-label="Next month">›</button>
+        <button id="prevMonth" class="ui" aria-label="Previous month">‹</button>
+        <h2 id="monthLabel" class="h"></h2>
+        <button id="nextMonth" class="ui" aria-label="Next month">›</button>
       </div>
       <div class="calendar">
         <div class="cal-grid">
-          <div class="dow">Sun</div><div class="dow">Mon</div><div class="dow">Tue</div>
-          <div class="dow">Wed</div><div class="dow">Thu</div><div class="dow">Fri</div><div class="dow">Sat</div>
+          <div class="dow ui">Sun</div><div class="dow ui">Mon</div><div class="dow ui">Tue</div>
+          <div class="dow ui">Wed</div><div class="dow ui">Thu</div><div class="dow ui">Fri</div><div class="dow ui">Sat</div>
           <div id="calCells" class="cells"></div>
         </div>
       </div>
       <div class="selected-day">
-        <h3 id="selectedDayLabel"></h3>
+        <h3 id="selectedDayLabel" class="h2"></h3>
         <ul id="dayTasks" class="list"></ul>
-        <p id="emptyDay" class="muted">No tasks on this day.</p>
+        <p id="emptyDay" class="muted body">No tasks on this day.</p>
       </div>
     </div>
   </section>
 
-  <!-- Habits -->
   <section id="habits" class="panel" role="tabpanel">
     <div class="card">
       <div class="row">
-        <input id="habitName" type="text" placeholder="New habit (e.g., Hydrate)" />
-        <button id="addHabit">Add</button>
+        <input id="habitName" class="body" type="text" placeholder="New habit (e.g., Hydrate)" />
+        <button id="addHabit" class="ui">Add</button>
       </div>
     </div>
-    <div class="card" id="habitsContainer">
-      <!-- habits render here -->
-    </div>
+    <div class="card" id="habitsContainer"></div>
   </section>
 
-  <!-- Settings -->
   <section id="settings" class="panel" role="tabpanel">
     <div class="card">
-      <h2>Appearance</h2>
-      <label class="row"><input id="darkModeToggle" type="checkbox"> Use dark mode</label>
+      <h2 class="h">Appearance</h2>
+      <label class="row ui"><input id="darkModeToggle" type="checkbox" checked> Use dark mode</label>
     </div>
     <div class="card">
-      <h2>Data</h2>
-      <button id="exportData">Export JSON</button>
-      <input id="importFile" type="file" accept="application/json" />
-      <button id="importBtn">Import JSON</button>
-      <p class="muted small">Export makes a backup you can save. Import replaces your current data.</p>
+      <h2 class="h">Data</h2>
+      <button id="exportData" class="ui">Export JSON</button>
+      <input id="importFile" class="body" type="file" accept="application/json" />
+      <button id="importBtn" class="ui">Import JSON</button>
+      <p class="muted small body">Export makes a backup you can save. Import replaces your current data.</p>
     </div>
     <div class="card">
-      <h2>About</h2>
-      <p class="muted small">BlueNox Planner — offline-first personal planner.</p>
+      <h2 class="h">About</h2>
+      <p class="muted small body">NoxBox Planner — offline-first personal planner.</p>
     </div>
   </section>
 </main>
 
 <footer class="app-footer">
-  <span>© BlueNox</span>
+  <span class="ui">© BlueNox</span>
 </footer>
 
 </body>
